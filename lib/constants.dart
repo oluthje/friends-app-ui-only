@@ -52,7 +52,7 @@ final friendsDocs = [
     "check_in_dates": [],
     "check_in_interval": "Weekly",
     "friend_intimacy": 1,
-    "name": "Thomas",
+    "name": "Tommy Caldwell",
     "user_id": 1,
     "id": "1",
   },
