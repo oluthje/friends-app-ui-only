@@ -9,7 +9,7 @@ import 'package:friends/constants.dart' as constants;
 import 'package:friends/textstyles.dart';
 
 class FriendsPage extends StatelessWidget {
-  double opacity = 0.8;
+  double opacity = 1;
   @override
   Widget build(BuildContext context) {
     return Padding(
