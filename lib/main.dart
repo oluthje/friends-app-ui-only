@@ -80,36 +80,64 @@ class _FriendsApp extends State<FriendsApp> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: const Text(
+          'Dashboard',
+          style: TextStyle(fontFamily: 'comic sans ms'),
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Friends",
+            backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            label: "Groups",
+            backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.check),
+            label: "Check Ins",
+            backgroundColor: Colors.blue,
+          ),
+        ],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(
-          top: 8.0,
-          left: 8.0,
-          right: 8.0,
-          bottom: 25.0,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              FriendsCard(
-                friends: friendsDocs,
-                groups: groupsDocs,
-                showFriendModal: showFriendModal,
-              ),
-              GroupsCard(
-                friends: friendsDocs,
-                groups: groupsDocs,
-              ),
-              CheckInsCard(
-                friends: friendsDocs,
-                groups: groupsDocs,
-                showFriendModal: showFriendModal,
-              ),
-            ],
+          padding: const EdgeInsets.only(
+            top: 8.0,
+            left: 8.0,
+            right: 8.0,
+            bottom: 25.0,
           ),
-        ),
-      ),
+          child: Center(
+            child: Text(
+              "Dashboard",
+              style: TextStyle(fontSize: 40),
+            ),
+          )
+          // child: SingleChildScrollView(
+          //   child: Column(
+          //     children: <Widget>[
+          //       FriendsCard(
+          //         friends: friendsDocs,
+          //         groups: groupsDocs,
+          //         showFriendModal: showFriendModal,
+          //       ),
+          //       GroupsCard(
+          //         friends: friendsDocs,
+          //         groups: groupsDocs,
+          //       ),
+          //       CheckInsCard(
+          //         friends: friendsDocs,
+          //         groups: groupsDocs,
+          //         showFriendModal: showFriendModal,
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          ),
     );
   }
 }

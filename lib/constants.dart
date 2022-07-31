@@ -98,6 +98,6 @@ final groupsDocs = [
   {
     "favorited": false,
     "friend_ids": ["1"],
-    "name": "Yoga",
+    "name": "High School",
   },
 ];
