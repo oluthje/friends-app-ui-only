@@ -19,12 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'Sign in App!',
-        theme: ThemeData(
-          primaryColor: spotifyGreen,
-          colorScheme: ColorScheme.fromSwatch().copyWith(
-            primary: spotifyGreen,
-          ),
-        ),
+        theme: ThemeData.dark().copyWith(),
         home: const HomePage(),
       );
 }
@@ -74,104 +69,86 @@ class FriendsApp extends StatefulWidget {
 }
 
 class _FriendsApp extends State<FriendsApp> {
+  int ci = 0; //current index
+  final screens = [
+    Center(
+        child: Text("Friends",
+            style: TextStyle(fontSize: 40, color: Colors.white))),
+    Center(
+        child: Text("Groups",
+            style: TextStyle(fontSize: 40, color: Colors.white))),
+    Center(
+        child: Text("Check Ins",
+            style: TextStyle(fontSize: 40, color: Colors.white))),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final friendsDocs = constants.friendsDocs;
     final groupsDocs = constants.groupsDocs;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Dashboard',
-          style: TextStyle(fontFamily: 'comic sans ms'),
+      backgroundColor: scaffoldBackground,
+      body: screens[ci],
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: bottomTabBarBackground,
+        selectedFontSize: 14,
+        unselectedFontSize: 10,
+        selectedIconTheme: IconThemeData(
+          color: brightWhite,
+          size: 40,
         ),
-      ),
-      bottomNavigationBar: BottomTabBar(),
-      body: Padding(
-          padding: const EdgeInsets.only(
-            top: 8.0,
-            left: 8.0,
-            right: 8.0,
-            bottom: 25.0,
+        unselectedIconTheme: IconThemeData(
+          color: fadedWhite,
+          size: 40,
+        ),
+        currentIndex:
+            ci, // increment to make it start on another page when you load app
+        onTap: (index) {
+          print('new index! $index');
+          setState(() {
+            ci = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Friends",
+            backgroundColor: Colors.blue,
           ),
-          child: Center(
-            child: Text(
-              "Dashboard",
-              style: TextStyle(fontSize: 40),
-            ),
-          )
-          // child: SingleChildScrollView(
-          //   child: Column(
-          //     children: <Widget>[
-          //       FriendsCard(
-          //         friends: friendsDocs,
-          //         groups: groupsDocs,
-          //         showFriendModal: showFriendModal,
-          //       ),
-          //       GroupsCard(
-          //         friends: friendsDocs,
-          //         groups: groupsDocs,
-          //       ),
-          //       CheckInsCard(
-          //         friends: friendsDocs,
-          //         groups: groupsDocs,
-          //         showFriendModal: showFriendModal,
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            label: "Groups",
+            backgroundColor: Colors.red,
           ),
-    );
-  }
-}
-
-class BottomTabBar extends StatefulWidget {
-  const BottomTabBar({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<BottomTabBar> createState() => _BottomTabBarState();
-}
-
-class _BottomTabBarState extends State<BottomTabBar> {
-  int ci = 0; //current index
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      backgroundColor: bottomTabBarBackground,
-      selectedFontSize: 14,
-      unselectedFontSize: 10,
-      selectedIconTheme: IconThemeData(
-        color: brightWhite,
-        size: 40,
+          BottomNavigationBarItem(
+            icon: Icon(Icons.check),
+            label: "Check Ins",
+            backgroundColor: Colors.purple,
+          ),
+        ],
       ),
-      unselectedIconTheme: IconThemeData(
-        color: fadedWhite,
-        size: 40,
-      ),
-      currentIndex:
-          ci, // increment to make it start on another page when you load app
-      onTap: (index) {
-        setState(() {
-          ci = index;
-        });
-      },
-      items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: "Friends",
-          backgroundColor: Colors.blue,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.people),
-          label: "Groups",
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.check),
-          label: "Check Ins",
-        ),
-      ],
     );
+    // child: SingleChildScrollView(
+    //   child: Column(
+    //     children: <Widget>[
+    //       FriendsCard(
+    //         friends: friendsDocs,
+    //         groups: groupsDocs,
+    //         showFriendModal: showFriendModal,
+    //       ),
+    //       GroupsCard(
+    //         friends: friendsDocs,
+    //         groups: groupsDocs,
+    //       ),
+    //       CheckInsCard(
+    //         friends: friendsDocs,
+    //         groups: groupsDocs,
+    //         showFriendModal: showFriendModal,
+    //       ),
+    //     ],
+    //   ),
+    // ),
   }
 }
