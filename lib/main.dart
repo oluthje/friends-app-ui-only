@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:friends/colors.dart';
 import 'package:friends/widgets/friends/friend_modal.dart';
 
 import 'package:friends/constants.dart' as constants;
+import 'package:friends/colors.dart';
 import 'package:friends/widgets/friends/friends_card.dart';
 import 'package:friends/widgets/groups/groups_card.dart';
 import 'package:friends/widgets/check_ins/check_ins_card.dart';
@@ -18,10 +20,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         title: 'Sign in App!',
         theme: ThemeData(
-          primaryColor: Colors.orange.shade300,
+          primaryColor: spotifyGreen,
           colorScheme: ColorScheme.fromSwatch().copyWith(
-            primary: Colors.orange.shade300,
-            // secondary: const Colors.yellow.shade700,
+            primary: spotifyGreen,
           ),
         ),
         home: const HomePage(),
@@ -85,25 +86,7 @@ class _FriendsApp extends State<FriendsApp> {
           style: TextStyle(fontFamily: 'comic sans ms'),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Friends",
-            backgroundColor: Colors.blue,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: "Groups",
-            backgroundColor: Colors.blue,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.check),
-            label: "Check Ins",
-            backgroundColor: Colors.blue,
-          ),
-        ],
-      ),
+      bottomNavigationBar: BottomTabBar(),
       body: Padding(
           padding: const EdgeInsets.only(
             top: 8.0,
@@ -138,6 +121,57 @@ class _FriendsApp extends State<FriendsApp> {
           //   ),
           // ),
           ),
+    );
+  }
+}
+
+class BottomTabBar extends StatefulWidget {
+  const BottomTabBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<BottomTabBar> createState() => _BottomTabBarState();
+}
+
+class _BottomTabBarState extends State<BottomTabBar> {
+  int ci = 0; //current index
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      backgroundColor: bottomTabBarBackground,
+      selectedFontSize: 14,
+      unselectedFontSize: 10,
+      selectedIconTheme: IconThemeData(
+        color: brightWhite,
+        size: 40,
+      ),
+      unselectedIconTheme: IconThemeData(
+        color: fadedWhite,
+        size: 40,
+      ),
+      currentIndex:
+          ci, // increment to make it start on another page when you load app
+      onTap: (index) {
+        setState(() {
+          ci = index;
+        });
+      },
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: "Friends",
+          backgroundColor: Colors.blue,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.people),
+          label: "Groups",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.check),
+          label: "Check Ins",
+        ),
+      ],
     );
   }
 }
