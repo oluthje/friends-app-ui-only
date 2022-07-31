@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'Sign in App!',
-        theme: ThemeData.dark().copyWith(),
+        theme: ThemeData.dark(),
         home: const HomePage(),
       );
 }
@@ -70,22 +70,28 @@ class FriendsApp extends StatefulWidget {
 
 class _FriendsApp extends State<FriendsApp> {
   int ci = 0; //current index
-  final screens = [
-    Center(
-        child: Text("Friends",
-            style: TextStyle(fontSize: 40, color: Colors.white))),
-    Center(
-        child: Text("Groups",
-            style: TextStyle(fontSize: 40, color: Colors.white))),
-    Center(
-        child: Text("Check Ins",
-            style: TextStyle(fontSize: 40, color: Colors.white))),
-  ];
 
   @override
   Widget build(BuildContext context) {
     final friendsDocs = constants.friendsDocs;
     final groupsDocs = constants.groupsDocs;
+    final screens = [
+      // FriendsCard(
+      //   friends: friendsDocs,
+      //   groups: groupsDocs,
+      //   showFriendModal: showFriendModal,
+      // ),
+      FriendsPage(),
+      GroupsCard(
+        friends: friendsDocs,
+        groups: groupsDocs,
+      ),
+      CheckInsCard(
+        friends: friendsDocs,
+        groups: groupsDocs,
+        showFriendModal: showFriendModal,
+      ),
+    ];
 
     return Scaffold(
       backgroundColor: scaffoldBackground,
@@ -130,25 +136,5 @@ class _FriendsApp extends State<FriendsApp> {
         ],
       ),
     );
-    // child: SingleChildScrollView(
-    //   child: Column(
-    //     children: <Widget>[
-    //       FriendsCard(
-    //         friends: friendsDocs,
-    //         groups: groupsDocs,
-    //         showFriendModal: showFriendModal,
-    //       ),
-    //       GroupsCard(
-    //         friends: friendsDocs,
-    //         groups: groupsDocs,
-    //       ),
-    //       CheckInsCard(
-    //         friends: friendsDocs,
-    //         groups: groupsDocs,
-    //         showFriendModal: showFriendModal,
-    //       ),
-    //     ],
-    //   ),
-    // ),
   }
 }
