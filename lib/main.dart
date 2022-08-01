@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         title: 'Sign in App!',
         theme: ThemeData.dark(),
+        debugShowCheckedModeBanner: false,
         home: const HomePage(),
       );
 }
@@ -81,7 +82,7 @@ class _FriendsApp extends State<FriendsApp> {
       //   groups: groupsDocs,
       //   showFriendModal: showFriendModal,
       // ),
-      FriendsPage(),
+      GroupPage(),
       GroupsCard(
         friends: friendsDocs,
         groups: groupsDocs,
@@ -107,7 +108,7 @@ class _FriendsApp extends State<FriendsApp> {
         ),
         unselectedIconTheme: IconThemeData(
           color: fadedWhite,
-          size: 40,
+          size: 37,
         ),
         currentIndex:
             ci, // increment to make it start on another page when you load app
