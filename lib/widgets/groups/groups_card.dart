@@ -74,7 +74,15 @@ class GroupPage extends StatelessWidget {
                   Text("Groups", style: titleText),
                   SizedBox(height: 40),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return Container(
+                          color: Colors.green,
+                          height: 100,
+                        );
+                      }));
+                    },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(CircleBorder()),
                       padding: MaterialStateProperty.all(EdgeInsets.all(10)),
@@ -117,11 +125,17 @@ class GroupPage extends StatelessWidget {
   }
 }
 
-class SpotifyPlaylistCard extends StatelessWidget {
+class SpotifyPlaylistCard extends StatefulWidget {
   SpotifyPlaylistCard(this.text, this.favorited);
 
   final text;
-  final favorited;
+  bool favorited;
+
+  @override
+  State<SpotifyPlaylistCard> createState() => _SpotifyPlaylistCardState();
+}
+
+class _SpotifyPlaylistCardState extends State<SpotifyPlaylistCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -138,13 +152,23 @@ class SpotifyPlaylistCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(width: 60),
-          Text(text, style: cardText),
+          Text(widget.text, style: cardText),
           SizedBox(
             width: 60,
-            child: Icon(
-              favorited ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
-              size: 30,
-              color: spotifyGreen,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  print("update favorites in backend!");
+                  widget.favorited = !widget.favorited;
+                });
+              },
+              child: Icon(
+                widget.favorited
+                    ? CupertinoIcons.heart_fill
+                    : CupertinoIcons.heart,
+                size: 30,
+                color: spotifyGreen,
+              ),
             ),
           ),
         ],
