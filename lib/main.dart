@@ -18,15 +18,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'Sign in App!',
-        theme: darkmode
-            ? ThemeData.dark().copyWith(primaryColor: primary)
-            : ThemeData(
-                primaryColor: primary,
-                colorScheme: ColorScheme.fromSwatch().copyWith(
-                  primary: primary,
-                  // secondary: const Colors.yellow.shade700,
-                ),
-              ),
+        theme: ThemeData(
+          primaryColor: primary,
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: primary,
+            secondary: secondary,
+          ),
+        ),
         home: const HomePage(),
       );
 }
