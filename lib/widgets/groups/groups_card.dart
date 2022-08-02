@@ -41,7 +41,7 @@ class GroupPage extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: 350,
+            height: 320,
             width: double.infinity,
             decoration: BoxDecoration(
               // Box decoration takes a gradient
@@ -72,36 +72,43 @@ class GroupPage extends StatelessWidget {
                 children: [
                   SizedBox(height: 100),
                   Text("Groups", style: titleText),
+                  SizedBox(height: 40),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(CircleBorder()),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                      backgroundColor: MaterialStateProperty.all(
+                          spotifyGreen), // <-- Button color
+                      overlayColor:
+                          MaterialStateProperty.resolveWith<Color?>((states) {
+                        if (states.contains(MaterialState.pressed))
+                          return buttonPressedGreen; // <-- Splash color
+                      }),
+                      elevation: MaterialStateProperty.all(10.0),
+                    ),
+                    child: Icon(Icons.add, size: 50),
+                  ),
                 ],
               ),
             ),
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 30),
-            child: Column(
-              children: [
-                SpotifyPlaylistCard(valuableGroups[0][constants.name], false),
-                SizedBox(height: 20),
-                SpotifyPlaylistCard(valuableGroups[1][constants.name], true),
-                SizedBox(height: 20),
-                SpotifyPlaylistCard(valuableGroups[2][constants.name], false),
-                Column(
-                  children: [
-                    ListView.builder(
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.only(bottom: 0),
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      itemCount: min(3, groups.length),
-                      itemBuilder: (context, int index) {
-                        return GroupListTile(
-                          name: valuableGroups[index][constants.name],
-                          favorited: valuableGroups[index][constants.favorited],
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
+            child: MediaQuery.removePadding(
+              removeTop: true,
+              removeBottom: false,
+              context: context,
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const AlwaysScrollableScrollPhysics(),
+                itemCount: min(3, groups.length),
+                itemBuilder: (context, int index) {
+                  return SpotifyPlaylistCard(
+                      valuableGroups[index][constants.name],
+                      valuableGroups[index][constants.favorited]);
+                },
+              ),
             ),
           )
         ],
@@ -118,6 +125,7 @@ class SpotifyPlaylistCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
         color: playlistCardGrey,
         borderRadius: BorderRadius.all(

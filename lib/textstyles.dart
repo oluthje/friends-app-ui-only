@@ -3,7 +3,7 @@ import 'package:friends/colors.dart';
 
 const titleText = TextStyle(
     color: brightWhite,
-    fontSize: 30,
+    fontSize: 40,
     fontFamily: "gothic",
     fontWeight: FontWeight.w700);
 

@@ -86,17 +86,17 @@ final friendsDocs = [
 ];
 final groupsDocs = [
   {
-    "favorited": false,
+    "favorited": true,
     "friend_ids": ["1", "2"],
     "name": "UCSC",
   },
   {
-    "favorited": true,
+    "favorited": false,
     "friend_ids": ["2", "3"],
-    "name": "Climbing",
+    "name": "Classmates",
   },
   {
-    "favorited": false,
+    "favorited": true,
     "friend_ids": ["1"],
     "name": "High School",
   },
