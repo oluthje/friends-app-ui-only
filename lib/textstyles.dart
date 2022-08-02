@@ -12,3 +12,9 @@ const paragraphText = TextStyle(
     fontSize: 20,
     fontFamily: "gothic",
     fontWeight: FontWeight.w200);
+
+const cardText = TextStyle(
+    color: brightWhite,
+    fontSize: 25,
+    fontFamily: "gothic",
+    fontWeight: FontWeight.w400);

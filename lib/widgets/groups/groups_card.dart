@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:friends/widgets/groups/groups_screen.dart';
 import '../dashboard/dashboard_card.dart';
@@ -10,9 +11,29 @@ import 'package:friends/colors.dart';
 import 'package:friends/textstyles.dart';
 
 class GroupPage extends StatelessWidget {
+  final List friends;
+  final List groups;
+
+  GroupPage({
+    Key? key,
+    required this.friends,
+    required this.groups,
+  }) : super(key: key);
+
+  List sortedGroupsByImportance() {
+    List sorted = groups;
+
+    sorted.sort((group1, group2) {
+      return 1;
+    });
+
+    return sorted;
+  }
+
   double opacity = 1;
   @override
   Widget build(BuildContext context) {
+    List valuableGroups = sortedGroupsByImportance();
     return Padding(
       padding: EdgeInsets.only(
         bottom: 25.0,
@@ -59,11 +80,27 @@ class GroupPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 30),
             child: Column(
               children: [
-                SpotifyPlaylistCard(),
+                SpotifyPlaylistCard(valuableGroups[0][constants.name], false),
                 SizedBox(height: 20),
-                SpotifyPlaylistCard(),
+                SpotifyPlaylistCard(valuableGroups[1][constants.name], true),
                 SizedBox(height: 20),
-                SpotifyPlaylistCard(),
+                SpotifyPlaylistCard(valuableGroups[2][constants.name], false),
+                Column(
+                  children: [
+                    ListView.builder(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.only(bottom: 0),
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      itemCount: min(3, groups.length),
+                      itemBuilder: (context, int index) {
+                        return GroupListTile(
+                          name: valuableGroups[index][constants.name],
+                          favorited: valuableGroups[index][constants.favorited],
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ],
             ),
           )
@@ -74,6 +111,10 @@ class GroupPage extends StatelessWidget {
 }
 
 class SpotifyPlaylistCard extends StatelessWidget {
+  SpotifyPlaylistCard(this.text, this.favorited);
+
+  final text;
+  final favorited;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -83,8 +124,23 @@ class SpotifyPlaylistCard extends StatelessWidget {
           Radius.circular(10),
         ),
       ),
-      // color: playlistCardGrey,
       height: 70,
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(width: 60),
+          Text(text, style: cardText),
+          SizedBox(
+            width: 60,
+            child: Icon(
+              favorited ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
+              size: 30,
+              color: spotifyGreen,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

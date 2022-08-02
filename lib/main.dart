@@ -82,7 +82,10 @@ class _FriendsApp extends State<FriendsApp> {
       //   groups: groupsDocs,
       //   showFriendModal: showFriendModal,
       // ),
-      GroupPage(),
+      GroupPage(
+        friends: friendsDocs,
+        groups: groupsDocs,
+      ),
       GroupsCard(
         friends: friendsDocs,
         groups: groupsDocs,
