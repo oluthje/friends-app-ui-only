@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:friends/colors.dart';
 import 'package:friends/data_managers/groups_manager.dart';
 import 'package:friends/widgets/groups/group_list_tile.dart';
 
@@ -77,6 +78,7 @@ class _GroupsScreen extends State<GroupsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: scaffoldBackground,
       appBar: AppBar(title: const Text('Groups')),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

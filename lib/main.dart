@@ -5,6 +5,7 @@ import 'package:friends/constants.dart' as constants;
 import 'package:friends/widgets/friends/friends_card.dart';
 import 'package:friends/widgets/groups/groups_card.dart';
 import 'package:friends/widgets/check_ins/check_ins_card.dart';
+import 'package:friends/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,13 +18,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'Sign in App!',
-        theme: ThemeData(
-          primaryColor: Colors.orange.shade300,
-          colorScheme: ColorScheme.fromSwatch().copyWith(
-            primary: Colors.orange.shade300,
-            // secondary: const Colors.yellow.shade700,
-          ),
-        ),
+        theme: darkmode
+            ? ThemeData.dark().copyWith(primaryColor: primary)
+            : ThemeData(
+                primaryColor: primary,
+                colorScheme: ColorScheme.fromSwatch().copyWith(
+                  primary: primary,
+                  // secondary: const Colors.yellow.shade700,
+                ),
+              ),
         home: const HomePage(),
       );
 }
@@ -79,6 +82,7 @@ class _FriendsApp extends State<FriendsApp> {
     final groupsDocs = constants.groupsDocs;
 
     return Scaffold(
+      backgroundColor: scaffoldBackground,
       appBar: AppBar(
         title: const Text('Dashboard'),
       ),

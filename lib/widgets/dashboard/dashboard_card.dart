@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:friends/colors.dart';
 
 class DashboardCard extends StatelessWidget {
   final Widget child;
   final String title;
   final Function onPressed;
-  final Icon icon;
+  final IconData icon;
   final String? emptyCardMessage;
 
   const DashboardCard({
@@ -29,6 +30,7 @@ class DashboardCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: dashboardCardBackground,
       elevation: 4.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
@@ -48,18 +50,21 @@ class DashboardCard extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 8),
-                        child: icon,
+                        child: Icon(icon, color: iconColor),
                       ),
                       Text(
                         title,
                         style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: headingColor),
                       ),
                     ],
                   ),
                   TextButton(
                     onPressed: () => onPressed(),
-                    child: const Icon(Icons.arrow_forward_ios_outlined),
+                    child: const Icon(Icons.arrow_forward_ios_outlined,
+                        color: iconColor),
                   ),
                 ],
               ),

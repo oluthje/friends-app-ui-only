@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:friends/colors.dart';
 
 import 'package:friends/constants.dart' as constants;
 import 'package:friends/data_managers/check_in_manager.dart';
@@ -63,6 +64,7 @@ class _CheckInsScreen extends State<CheckInsScreen> {
     final sortedFriends = sortedFriendsByCheckins();
 
     return Scaffold(
+      backgroundColor: scaffoldBackground,
       appBar: AppBar(title: const Text('Check Ins')),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,

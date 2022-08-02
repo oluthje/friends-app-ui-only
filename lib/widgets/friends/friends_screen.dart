@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:friends/colors.dart';
 import 'package:friends/constants.dart' as constants;
 import 'package:friends/widgets/friends/friends_list.dart';
 
@@ -35,6 +36,7 @@ class _FriendsScreen extends State<FriendsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: scaffoldBackground,
       appBar: AppBar(title: const Text('Friends')),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
