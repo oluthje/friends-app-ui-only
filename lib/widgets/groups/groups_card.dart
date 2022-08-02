@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:friends/widgets/groups/groups_screen.dart';
+import 'package:friends/widgets/groups/playlist_edit.dart';
 import '../dashboard/dashboard_card.dart';
 import 'package:friends/constants.dart' as constants;
 
@@ -77,10 +78,7 @@ class GroupPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return Container(
-                          color: Colors.green,
-                          height: 100,
-                        );
+                        return GroupEditingScreen();
                       }));
                     },
                     style: ButtonStyle(
@@ -152,7 +150,14 @@ class _SpotifyPlaylistCardState extends State<SpotifyPlaylistCard> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(width: 60),
-          Text(widget.text, style: cardText),
+          RawMaterialButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return GroupEditingScreen();
+              }));
+            },
+            child: Text(widget.text, style: cardText),
+          ),
           SizedBox(
             width: 60,
             child: GestureDetector(

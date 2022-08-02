@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:friends/colors.dart';
+import 'package:friends/textstyles.dart';
 
 class DashboardCard extends StatelessWidget {
   final Widget child;
@@ -28,45 +30,48 @@ class DashboardCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: InkWell(
-        onTap: () => onPressed(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0, top: 0.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: icon,
-                      ),
-                      Text(
-                        title,
-                        style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  TextButton(
-                    onPressed: () => onPressed(),
-                    child: const Icon(Icons.arrow_forward_ios_outlined),
-                  ),
-                ],
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(25.0),
+        child: Card(
+          color: scaffoldBackground,
+          elevation: 4.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 16.0, top: 0.0, bottom: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 16.0),
+                          child: icon,
+                        ),
+                        Text(
+                          title,
+                          style: titleText.copyWith(fontSize: 35),
+                        ),
+                      ],
+                    ),
+                    TextButton(
+                      onPressed: () => onPressed(),
+                      child: const Icon(Icons.arrow_forward_ios_outlined),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            child,
-            emptyCardMessageWidget(),
-          ],
+              child,
+              emptyCardMessageWidget(),
+            ],
+          ),
         ),
       ),
     );

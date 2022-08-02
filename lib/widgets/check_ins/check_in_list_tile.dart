@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:friends/check_in/check_in.dart';
 import 'package:friends/constants.dart' as constants;
 import 'package:friends/data_managers/check_in_manager.dart';
+import 'package:friends/textstyles.dart';
 
 class CheckInListTile extends StatelessWidget {
   final dynamic friend;
@@ -33,11 +34,18 @@ class CheckInListTile extends StatelessWidget {
         : 'No check ins yet';
 
     return ListTile(
-      title: Text(name),
+      contentPadding: EdgeInsets.only(bottom: 20),
+      title: Text(
+        name,
+        style: cardText,
+      ),
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(formattedTimeSinceLastCheckIn),
+          Text(
+            formattedTimeSinceLastCheckIn,
+            style: paragraphText,
+          ),
         ],
       ),
       trailing: Column(
@@ -56,10 +64,11 @@ class CheckInListTile extends StatelessWidget {
               alignment: Alignment.center,
             ),
             child: Icon(
-              checkedIn ? Icons.check_box : Icons.check_box_outline_blank,
-            ),
+                checkedIn ? Icons.check_box : Icons.check_box_outline_blank,
+                size: 30),
           ),
-          Text('$formattedTimeToDeadline left'),
+          Text('$formattedTimeToDeadline left',
+              style: paragraphText.copyWith(fontSize: 15)),
         ],
       ),
       onTap: onTap,

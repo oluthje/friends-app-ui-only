@@ -77,15 +77,10 @@ class _FriendsApp extends State<FriendsApp> {
     final friendsDocs = constants.friendsDocs;
     final groupsDocs = constants.groupsDocs;
     final screens = [
-      // FriendsCard(
-      //   friends: friendsDocs,
-      //   groups: groupsDocs,
-      //   showFriendModal: showFriendModal,
-      // ),
-
-      GroupsCard(
+      FriendsCard(
         friends: friendsDocs,
         groups: groupsDocs,
+        showFriendModal: showFriendModal,
       ),
       GroupPage(
         friends: friendsDocs,

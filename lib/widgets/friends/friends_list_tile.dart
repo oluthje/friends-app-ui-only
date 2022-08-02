@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:friends/constants.dart' as constants;
+import 'package:friends/textstyles.dart';
 
 class FriendsListTile extends StatelessWidget {
   final String name;
@@ -39,20 +40,23 @@ class FriendsListTile extends StatelessWidget {
       }
     }
 
-    return ListTile(
-      title: Text(name),
-      subtitle: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(subtitle),
-          Text(checkinName),
-        ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 25.0),
+      child: ListTile(
+        title: Text(name, style: cardText),
+        subtitle: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(subtitle, style: paragraphText.copyWith(fontSize: 20)),
+            Text(checkinName, style: paragraphText),
+          ],
+        ),
+        trailing: trailing,
+        visualDensity: const VisualDensity(
+          vertical: VisualDensity.minimumDensity,
+        ),
+        onTap: onTap,
       ),
-      trailing: trailing,
-      visualDensity: const VisualDensity(
-        vertical: VisualDensity.minimumDensity,
-      ),
-      onTap: onTap,
     );
   }
 }

@@ -52,7 +52,7 @@ class CheckInsCard extends StatelessWidget {
 
     return DashboardCard(
       title: 'Check Ins',
-      icon: const Icon(Icons.check),
+      icon: const Icon(Icons.check, size: 40),
       emptyCardMessage:
           friends.isEmpty ? "No checkins yet, click here to add some!" : null,
       onPressed: () => Navigator.push(

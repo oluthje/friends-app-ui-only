@@ -47,7 +47,10 @@ class FriendsCard extends StatelessWidget {
 
     return DashboardCard(
       title: 'Friends',
-      icon: const Icon(Icons.home),
+      icon: const Icon(
+        Icons.home,
+        size: 40,
+      ),
       emptyCardMessage:
           friends.isEmpty ? "No friends yet, click here to add some!" : null,
       onPressed: () => Navigator.push(
